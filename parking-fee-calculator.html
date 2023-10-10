@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<title></title>
+<head>
+
+   <style>
+		.css-input1{
+		width: 200px;
+		}
+	   .confirm-button{
+		   font-family: sans-serif;
+		   background-color: green;
+		   color: white;
+		   font-weight: bold;
+		   height: 30px;
+		   width: 70px;
+		   border-radius: 15px;
+	   }
+	   .css-input{
+		   width: 80px;
+	   }
+
+	</style>
+
+</head>
+<body>
+ <p>Parking Fee Calculator</p>
+
+ <input class="css-input1 free-minute" type = "number" placeholder = "enter complementary parking mins"><br><br>
+ <input class="css-input input-rate" type="number" placeholder="enter hourly rate"><br>
+ 
+ <p>enter entry hour and minute in the separate boxes below</p>
+
+<input type = "number" placeholder = "entry hour" class = "css-input entry-hour">
+<input type = "number" placeholder = "entry min" class = "css-input entry-minute">
+
+ <p class = "show-entry">your entry:</p>
+
+
+ <p>enter exit hour and minute in the separate boxes below</p>
+<input type = "number" placeholder = "exit hour" class = "css-input exit-hour">
+<input type = "number" placeholder = "exit min" class = "css-input exit-minute">
+
+
+<p class = "show-exit">your exit:</p>
+
+ <p class = "fee"></p>
+
+<button class="confirm-button" 
+ onclick = "calculate1(); calculate2();
+">Confirm</button><br><br><br>
+<a "href="index.html">HomePage</a>
+ 
+
+
+<script>
+// entry part
+let totalEntryMinute = 0;
+   
+	function calculate1(){
+const inputElement1 = document.querySelector('.entry-hour');
+const inputEntryHour = Number(inputElement1.value);
+const entryHourToMinute = inputEntryHour * 60; 
+
+
+
+
+const inputElement2 = document.querySelector('.entry-minute');
+const inputEntryMinute = Number(inputElement2.value);
+
+document.querySelector('.show-entry').innerHTML = `${inputEntryHour}:${inputEntryMinute}`;
+
+	totalEntryMinute = entryHourToMinute + inputEntryMinute;
+	
+	}
+
+
+
+//exit part
+  let totalExitMinute = 0;
+	
+	function calculate2(){
+const inputElement3 = document.querySelector('.exit-hour');
+const inputExitHour = Number(inputElement3.value);
+ const exitHourToMinute = inputExitHour * 60;
+
+
+
+const inputElement4 = document.querySelector('.exit-minute');
+const inputExitMinute = Number(inputElement4.value);
+
+
+
+const inputFreeMinute = Number(document.querySelector('.free-minute').value);
+  
+
+document.querySelector('.show-exit').innerHTML = `${inputExitHour}:${inputExitMinute}`;
+
+totalExitMinute = exitHourToMinute + inputExitMinute - inputFreeMinute;
+
+
+//calculation part
+
+const totalMinute = totalExitMinute - totalEntryMinute;
+
+
+		const z = totalMinute / 60;
+	
+const p = z.toFixed(2);
+
+
+const rate = Number(document.querySelector('.input-rate').value);
+
+
+let fee = 0;
+
+
+if(p <= 0){fee = 'NIL';}
+else if(p > 0 && p <= 1){fee = `$${rate}`;}
+else if(p > 1 && p <= 2){fee = `$${2 * rate}`;}
+else if(p > 2 && p <= 3){fee = `$${3 * rate}`;}
+else if(p > 3 && p <= 4){fee = `$${4 * rate}`;}
+else if(p > 4 && p <= 5){fee = `$${5 * rate}`;}
+else if(p > 5 && p <= 6){fee = `$${6 * rate}`;}
+else if(p > 6 && p <= 7){fee = `$${7 * rate}`;}
+else if(p > 7 && p <= 8){fee = `$${8 * rate}`;}
+else if(p > 8 && p <= 9){fee = `$${9 * rate}`;}
+else if(p > 9 && p <= 10){fee = `$${10 * rate}`;}
+else if(p > 10 && p <= 11){fee = `$${11 * rate}`;}
+else if(p > 11 && p <= 12){fee = `$${12 * rate}`;}
+else if(p > 12 && p <= 13){fee = `$${13 * rate}`;}
+else if(p > 13 && p <= 14){fee = `$${14 * rate}`;}
+else if(p > 14 && p <= 15){fee = `$${15 * rate}`;}
+ 
+document.querySelector('.fee').innerHTML = `${fee}`;
+
+}
+
+</script>
+</body>
+</html>
